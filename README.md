@@ -19,7 +19,7 @@ To see the paramaters needed to invoke the tests, use:
 python3 provider_benchmark.py -h
 ```
 
-Each test that you run is repeated 100 times, with a 5 second delay, but you can edit these paraterms in [config.py](config.py)
+Each test that you run is repeated 457 times, with a 5 second delay, but you can edit these paraterms in [config.py](config.py)
 
 ## Contributing
 
