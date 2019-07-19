@@ -1,7 +1,7 @@
 import sys
 from multiprocessing import Lock
 
-ITERATIONS = 100
+ITERATIONS = 457
 DELAY = 5
 VERBOSE = False
 STDIN = sys.stdin.fileno()
