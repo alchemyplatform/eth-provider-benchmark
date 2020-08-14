@@ -27,7 +27,7 @@ def transactionsTest(web3, company):
         signed_txn = web3.eth.account.signTransaction({
                         'to': recieveAccount.address,
                         'gasPrice':web3.eth.gasPrice,
-                        'nonce': nonce + i + 1,
+                        'nonce': nonce + i,
                         'gas': 100000,
                     },
                     sendAccount.privateKey) 
