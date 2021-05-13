@@ -10,6 +10,7 @@ import config
 def parseArgs():
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', action='store', dest='infura_api_key', help='test Infura with your unique API key')
+    parser.add_argument('-t', action='store', dest='tatum_api_key', help='test Tatum with your unique API key')
     parser.add_argument('-a', action='store', dest='alchemy_api_key', help="test Alchemy with your unique API key")
     parser.add_argument('-c', '--cloudflare', action='store_true', help="test Cloudflare")
     parser.add_argument('-n', action='store', dest='node_http_instance', help="test a specific node with an http instance")
@@ -66,12 +67,20 @@ def node(tests, args):
         web3 = Web3(Web3.HTTPProvider(args.node_http_instance))
         runTests(web3, "ETH Node", tests)
 
+def tatum(tests, args):
+    if args.http:
+        if args.mainnet: 
+            web3 = Web3(Web3.HTTPProvider("https://api-eu1.tatum.io/v3/ethereum/web3/"+args.tatum_api_key))
+        else:
+            web3 = Web3(Web3.HTTPProvider("https://api-eu1.tatum.io/v3/ethereum/web3/"+args.tatum_api_key))
+        runTests(web3, "Tatum", tests)
+
 if __name__ == '__main__':
     args = parseArgs()
 
     config.VERBOSE = args.verbose
 
-    if args.infura_api_key is None and args.alchemy_api_key is None and not args.cloudflare and args.node_http_instance is None:
+    if args.infura_api_key is None and args.alchemy_api_key is None and not args.cloudflare and args.node_http_instance is None and args.tatum_api_key is None:
         print ("provider_benchmark.py: error: must specify companies to test, use -h for help")
         sys.exit()
 
@@ -90,9 +99,10 @@ if __name__ == '__main__':
         threads.append(Process(target=cloudflare, args=(tests, args)))
     if args.node_http_instance:
         threads.append(Process(target=node, args=(tests, args)))
+    if args.tatum_api_key: 
+        threads.append(Process(target=tatum, args=(tests,args)))
     
     for t in threads:
         t.start()
     for t in threads:
         t.join()
-
