@@ -26,6 +26,7 @@ def transactionsTest(web3, company):
     for i in range(config.ITERATIONS):
         signed_txn = web3.eth.account.signTransaction({
                         'to': recieveAccount.address,
+                        'chainId': web3.eth.chainId,
                         'gasPrice':web3.eth.gasPrice,
                         'nonce': nonce + i,
                         'gas': 100000,
