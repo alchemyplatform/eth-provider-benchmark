@@ -17,7 +17,7 @@ def logTest(web3, company):
         else:
             latestBlockHash = latestBlock.hash.hex()
             try:
-                logByHash = web3.eth.getLogs({'blockHash': latestBlockHash})
+                logByHash = web3.eth.get_logs({'blockHash': latestBlockHash})
             except Exception as e:
                 if config.VERBOSE:
                     print(company, "gave the following error when trying to find logs for the latest block",
