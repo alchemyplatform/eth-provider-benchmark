@@ -9,7 +9,7 @@ def logTest(web3, company):
     logsDic = {}
 
     for i in range(config.ITERATIONS):
-        latestBlock = web3.eth.getBlock('latest')
+        latestBlock = web3.eth.get_block('latest')
         if latestBlock is None:
             latestBlockFailure += 1
             if config.VERBOSE:
