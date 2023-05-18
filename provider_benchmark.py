@@ -1,7 +1,6 @@
 from multiprocessing import Process
 from web3 import Web3
 import argparse
-import random
 import log_consistency
 import pending_transactions
 import sys
@@ -47,14 +46,14 @@ def alchemy(tests, args):
                 "wss://eth-mainnet.g.alchemy.com/v2/" + args.alchemy_api_key))
         else:
             web3 = Web3(Web3.WebsocketProvider(
-                "wss://eth-ropsten.ws.alchemyapi.io/ws/" + args.alchemy_api_key))
+                "wss://eth-mainnet.g.alchemy.com/v2/" + args.alchemy_api_key))
     else:
         if args.mainnet:
             web3 = Web3(Web3.HTTPProvider(
-                "https://eth-mainnet.g.alchemy.com/v2/" + args.alchemy_api_key))
+                "https://eth-sepolia.g.alchemy.com/v2/" + args.alchemy_api_key))
         else:
             web3 = Web3(Web3.HTTPProvider(
-                "https://eth-ropsten.alchemyapi.io/jsonrpc/" + args.alchemy_api_key))
+                "https://eth-sepolia.g.alchemy.com/v2/" + args.alchemy_api_key))
     runTests(web3, "Alchemy", tests)
 
 
@@ -65,14 +64,14 @@ def infura(tests, args):
                 "wss://mainnet.infura.io/ws/v3/" + args.infura_api_key))
         else:
             web3 = Web3(Web3.WebsocketProvider(
-                "wss://ropsten.infura.io/ws/v3/" + args.infura_api_key))
+                "wss://sepolia.infura.io/ws/v3/" + args.infura_api_key))
     else:
         if args.mainnet:
             web3 = Web3(Web3.HTTPProvider(
                 "https://mainnet.infura.io/v3/" + args.infura_api_key))
         else:
             web3 = Web3(Web3.HTTPProvider(
-                "https://ropsten.infura.io/v3/" + args.infura_api_key))
+                "https://sepolia.infura.io/v3/" + args.infura_api_key))
     runTests(web3, "Infura", tests)
 
 
