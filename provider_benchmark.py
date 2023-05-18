@@ -21,7 +21,7 @@ def parseArgs():
                         help="display progess of tests")
     net = parser.add_mutually_exclusive_group(required=True)
     net.add_argument('-mainnet', action='store_true', help="test on Mainnet")
-    net.add_argument('-ropsten', action='store_true', help="test on Ropsten")
+    net.add_argument('-sepolia', action='store_true', help="test on Sepolia")
     connection = parser.add_mutually_exclusive_group(required=True)
     connection.add_argument(
         '-websocket', action='store_true', help="test websocket")
