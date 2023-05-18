@@ -19,7 +19,29 @@ To see the paramaters needed to invoke the tests, use:
 python3 provider_benchmark.py -h
 ```
 
-Each test that you run is repeated 457 times, with a 5 second delay, but you can edit these paraterms in [config.py](config.py)
+### Log Consistency
+
+```bash
+python3 provider_benchmark.py -i <<INFURA_API_KEY>> -a <<ALCHEMY_API_KEY>> -c -mainnet -http --log_consistency
+```
+
+```bash
+python3 provider_benchmark.py -i <<INFURA_API_KEY>> -a <<ALCHEMY_API_KEY>> -c -sepolia -ws --log_consistency
+```
+
+### Log Accuracy
+
+```bash
+python3 provider_benchmark.py -i <<INFURA_API_KEY>> -a <<ALCHEMY_API_KEY>> -c -mainnet -http --pending_transactions
+```
+
+```bash
+python3 provider_benchmark.py -i <<INFURA_API_KEY>> -a <<ALCHEMY_API_KEY>> -c -sepolia -ws --pending_transactions
+```
+
+### Config
+
+Each test that you run is repeated 457 times, with a 5 second delay, but you can edit these parameters in [config.py](config.py).
 
 ## Contributing
 
